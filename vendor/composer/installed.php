@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => 'vendor-name/fisio-system',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'a230fe92e9d7b8f4d148d4e8d969e029c4187248',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        'coffeecode/datalayer' => array(
+            'pretty_version' => '1.1.8',
+            'version' => '1.1.8.0',
+            'reference' => '52e209190752eccc0bfd8ff3abcdd607ed4c01c1',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../coffeecode/datalayer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'coffeecode/router' => array(
+            'pretty_version' => '2.0.2',
+            'version' => '2.0.2.0',
+            'reference' => 'a16770ae952ce3f91a04035a09be610a030e049c',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../coffeecode/router',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'vendor-name/fisio-system' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'a230fe92e9d7b8f4d148d4e8d969e029c4187248',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);

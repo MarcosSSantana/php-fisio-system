@@ -1,0 +1,28 @@
+{
+  "name": "vendor-name/fisio-system",
+  "description": "sistema de controle de consulta de fisio",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marcos Santana",
+      "email": "marcosshotokan10@gmail.com",
+      "role": "developer"
+    }
+  ],
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "Source\\": "source/"
+    },
+    "files": [
+      "config/Config.php"
+    ]
+  },
+  "require": {
+    "coffeecode/datalayer": "1.1.*",
+    "coffeecode/router": "2.0.*"
+  }
+}
