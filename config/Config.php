@@ -1,4 +1,6 @@
 <?php
+define("ROOT", "http://localhost:8888/fisio-system/");
+define("SITE", "Fisio System");
 const DATA_LAYER_CONFIG = [
     "driver" => "mysql",
     "host" => "localhost",
@@ -13,4 +15,15 @@ const DATA_LAYER_CONFIG = [
         PDO::ATTR_CASE => PDO::CASE_NATURAL
     ]
 ];
+
+function url(string $uri = null):string
+{
+    if ($uri)
+    {
+        return ROOT."/{$uri}";
+    }
+    return ROOT;
+}
+
+
 
