@@ -1,5 +1,5 @@
 <?php
-define("ROOT", "http://localhost:8888/fisio-system/");
+define("ROOT", "http://localhost/fisio-system/");
 define("SITE", "Fisio System");
 const DATA_LAYER_CONFIG = [
     "driver" => "mysql",

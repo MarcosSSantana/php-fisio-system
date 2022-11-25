@@ -18,9 +18,10 @@ class Main
     {
 //        echo "<h1>Inicio</h1>";
 
-        $list= (new Paciente())->find()->fetch(true);
+        $list= "";//(new Paciente())->find()->fetch(true);
         echo $this->view->render("inicio", [
-            "pacientes"=> $list
+            "pacientes"=> $list,
+            "title"=> "Home"
         ]);
 //        foreach ($list as $item) {
 //            print_r($item->nome);
@@ -31,6 +32,15 @@ class Main
 //        foreach ($list as $item) {
 //            print_r($item->nome);
 //        }
+    }
+
+    public function login($data)
+    {
+//        echo "login";
+        echo $this->view->render("login", [
+            "title"=> "Login"
+        ]);
+//
     }
 
 }
