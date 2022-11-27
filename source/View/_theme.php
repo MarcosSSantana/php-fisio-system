@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="<?= ROOT ?>assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= ROOT ?>assets/dist/css/adminlte.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= ROOT ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 <body class="sidebar-mini layout-fixed control-sidebar-slide-open text-sm">
 
@@ -47,10 +51,11 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
+        <?= $this->section('content') ?>
+
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <?= $this->section('content') ?>
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
@@ -107,5 +112,7 @@
 <script src="<?= ROOT ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= ROOT ?>assets/dist/js/adminlte.min.js"></script>
+<?= $this->section('scripts') ?>
+
 </body>
 </html>

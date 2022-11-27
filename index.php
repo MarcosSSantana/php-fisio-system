@@ -7,6 +7,8 @@ $router = new Router("http://localhost:8888/fisio-system");
 $router->namespace("Source\Controllers");
 $router->group(null);
 $router->get("/", "Main:inicio");
+$router->get("/paciente", "ctlPaciente:inicio");
+$router->post("/paciente", "ctlPaciente:cadastro");
 $router->get("/login", "Main:login");
 /*
 $router->post("/route/{id}", "Controller:method");

@@ -19,9 +19,8 @@ class Main
 //        echo "<h1>Inicio</h1>";
 
         $list= "";//(new Paciente())->find()->fetch(true);
-        echo $this->view->render("inicio", [
-            "pacientes"=> $list,
-            "title"=> "Home"
+        echo $this->view->render("inicio",[
+            "title"=> "Inicio"
         ]);
 //        foreach ($list as $item) {
 //            print_r($item->nome);
