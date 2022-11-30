@@ -3,6 +3,7 @@ $this->layout('_theme', [
     'title' => $this->data["title"]
 ])
 ?>
+
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
@@ -15,49 +16,49 @@ $this->layout('_theme', [
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="paciente" method="post">
+                    <form action="<?=ROOT?>paciente" method="post">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <label for="nome">Nome</label>
-                                        <input type="text" class="form-control" id="nome" placeholder="Nome">
+                                        <input type="text" class="form-control" name="nome" placeholder="Nome">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="cpf">CPF</label>
-                                        <input type="text" class="form-control" id="cpf" placeholder="CPF">
+                                        <input type="text" class="form-control" name="cpf" placeholder="CPF">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="peso">Peso</label>
-                                        <input type="text" class="form-control" id="peso" placeholder="Peso">
+                                        <input type="text" class="form-control" name="peso" placeholder="Peso">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="altura">Altura</label>
-                                        <input type="text" class="form-control" id="altura" placeholder="Altura">
+                                        <input type="text" class="form-control" name="altura" placeholder="Altura">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="hd">HD</label>
-                                        <input type="text" class="form-control" id="hd" placeholder="HD">
+                                        <input type="text" class="form-control" name="hd" placeholder="HD">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="ac">AC</label>
-                                        <input type="text" class="form-control" id="ac" placeholder="AC">
+                                        <input type="text" class="form-control" name="ac" placeholder="AC">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="observacao">Observação</label>
-                                        <textarea class="form-control" id="observacao" rows="5"></textarea>
+                                        <textarea class="form-control" name="observacao" rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +80,7 @@ $this->layout('_theme', [
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table name="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Nome</th>
