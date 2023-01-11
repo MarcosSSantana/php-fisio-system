@@ -13,22 +13,21 @@ $this->layout('_theme', [
                     <div class="card-header p-0 pt-1">
                         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="tabs-lista-tab" data-toggle="pill"
-                                   href="#tabs-lista" role="tab" aria-controls="tabs-lista"
+                                <a class="nav-link active lista" id="tabs-lista-tab" data-toggle="pill"
+                                   href="#lista" role="tab" aria-controls="tabs-lista"
                                    aria-selected="true">Lista</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="tabs-cadastro-tab" data-toggle="pill"
-                                   href="#tabs-cadastro" role="tab" aria-controls="tabs-cadastro"
+                                <a class="nav-link cadastro" id="tabs-cadastro-tab" data-toggle="pill"
+                                   href="#cadastro" role="tab" aria-controls="tabs-cadastro"
                                    aria-selected="false">Cadastro</a>
                             </li>
                         </ul>
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="custom-tabs-one-tabContent">
-                            <div class="tab-pane fade show active" id="tabs-lista" role="tabpanel"
-                                 aria-labelledby="tabs-lista-tab">
-                                <table name="example1" class="table table-bordered table-striped">
+                            <div class="active tab-pane lista" id="lista">
+                                <table id="example1" name="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th>Nome</th>
@@ -36,6 +35,7 @@ $this->layout('_theme', [
                                         <th>Idade</th>
                                         <th>Peso</th>
                                         <th>Altura</th>
+                                        <th>Ação</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -46,13 +46,28 @@ $this->layout('_theme', [
                                             <td><?= $item->idade ?></td>
                                             <td><?= $item->peso ?></td>
                                             <td><?= $item->altura ?></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-warning btn-sm carregar_dados"
+                                                       href="paciente/dados/<?= $item->id ?>">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Editar
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm deletar_dados"
+                                                       href="paciente/deletar/<?= $item->id ?>">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        Delete
+                                                    </a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="tab-pane fade" id="tabs-cadastro" role="tabpanel"
-                                 aria-labelledby="tabs-cadastro-tab">
+                            <div class="tab-pane cadastro" id="cadastro">
                                 <form action="<?= ROOT ?>paciente" method="post">
                                     <div class="card-body">
                                         <div class="row">
@@ -74,6 +89,7 @@ $this->layout('_theme', [
                                                 <div class="form-group">
                                                     <label for="cpf">CPF</label>
                                                     <input type="text" class="form-control" name="cpf"
+                                                           data-inputmask='"mask": "999.999.999-99"' data-mask
                                                            placeholder="CPF">
                                                 </div>
                                             </div>
@@ -87,7 +103,8 @@ $this->layout('_theme', [
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="altura">Altura</label>
-                                                    <input type="text" class="form-control" name="alt"
+                                                    <input type="text" class="form-control" name="altura"
+                                                           data-inputmask='"mask": "9.99"' data-mask
                                                            placeholder="Altura">
                                                 </div>
                                             </div>
@@ -110,6 +127,7 @@ $this->layout('_theme', [
                                                               rows="5"></textarea>
                                                 </div>
                                             </div>
+                                            <input type="hidden" name="id">
                                         </div>
 
 
@@ -146,7 +164,7 @@ $this->layout('_theme', [
 
 <script>
     $(function () {
-        $('#example1').DataTable({
+        $('table').DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
             "paging": true,
@@ -154,6 +172,34 @@ $this->layout('_theme', [
             "ordering": true,
             "info": true,
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        $(":input").inputmask();
+
+        $('.carregar_dados').click(function (event) {
+            event.preventDefault();
+            let url = $(this).attr('href');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: function (retorno) {
+                    let obj = JSON.parse(retorno);
+                    // let obj = retorno;
+                    console.log(obj);
+                    Object.entries(obj).forEach(([key, value]) => {
+                        console.log(value)
+                        if (!value) return;
+                        let campo = "[name='" + key + "']";
+
+                        // if (value == 1) {
+                            $(campo).val(value);
+                        // }
+                    });
+                    $('.lista').removeClass('active');
+                    $('.cadastro').addClass('active');
+                }
+            });
+        });
+
     });
 </script>
 <?php $this->end() ?>

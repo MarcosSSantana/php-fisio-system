@@ -70,6 +70,9 @@
 <script src="<?= ROOT ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= ROOT ?>assets/dist/js/adminlte.min.js"></script>
+<!-- InputMask -->
+<!-- <script src="assets/adminlt/plugins/moment/moment.min.js"></script> -->
+<script src="<?= ROOT ?>assets/plugins/inputmask/jquery.inputmask.min.js"></script>
 <?= $this->section('scripts') ?>
 
 </body>
