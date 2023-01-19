@@ -48,12 +48,18 @@ $this->layout('_theme', [
                                             <td><?= $item->altura ?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a class="btn btn-warning btn-sm carregar_dados"
+                                                    <button class="btn btn-warning btn-sm"
+                                                            onclick="carregar_dados('paciente/dados/<?= $item->id ?>')">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        Editar
+                                                    </button>
+                                                    <!--<a class="btn btn-warning btn-sm carregar_dados"
+                                                       onclick="carregar_dados(this)"
                                                        href="paciente/dados/<?= $item->id ?>">
                                                         <i class="fas fa-pencil-alt">
                                                         </i>
                                                         Editar
-                                                    </a>
+                                                    </a>-->
                                                     <a class="btn btn-danger btn-sm deletar_dados"
                                                        href="paciente/deletar/<?= $item->id ?>">
                                                         <i class="fas fa-trash">
@@ -71,33 +77,61 @@ $this->layout('_theme', [
                                 <form action="<?= ROOT ?>paciente" method="post">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="nome">Nome</label>
                                                     <input type="text" class="form-control" name="nome"
-                                                           placeholder="Nome">
+                                                           placeholder="Nome" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="sexo">Sexo</label>
+                                                    <select class="form-control" name="sexo" required>
+                                                        <option value="">Sexo</option>
+                                                        <option value="Masculino">Masculino</option>
+                                                        <option value="Feminino">Feminino</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="convenio">Convênio</label>
+                                                    <select class="form-control" name="convenio" >
+                                                        <option value="">Convênio</option>
+                                                        <option value="Unimed">Unimed</option>
+                                                        <option value="São Francisco">São Francisco</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="idade">Idade</label>
                                                     <input type="number" class="form-control" name="idade"
-                                                           placeholder="idade">
+                                                           placeholder="idade" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="cpf">CPF</label>
                                                     <input type="text" class="form-control" name="cpf"
                                                            data-inputmask='"mask": "999.999.999-99"' data-mask
-                                                           placeholder="CPF">
+                                                           placeholder="CPF" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="telefone">Telefone</label>
+                                                    <input type="text" class="form-control" name="telefone"
+                                                           data-inputmask='"mask": "(99) 99999-9999"' data-mask
+                                                           placeholder="Telefone">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="peso">Peso</label>
                                                     <input type="text" class="form-control" name="peso"
-                                                           placeholder="Peso">
+                                                           placeholder="Peso" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -108,13 +142,20 @@ $this->layout('_theme', [
                                                            placeholder="Altura">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="imc">IMC</label>
+                                                    <input type="text" class="form-control" name="imc"
+                                                           placeholder="IMC">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="hd">HD</label>
                                                     <input type="text" class="form-control" name="hd" placeholder="HD">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="ac">AC</label>
                                                     <input type="text" class="form-control" name="ac" placeholder="AC">
@@ -123,7 +164,7 @@ $this->layout('_theme', [
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="observacao">Observação</label>
-                                                    <textarea class="form-control" name="obs"
+                                                    <textarea class="form-control" name="observacao"
                                                               rows="5"></textarea>
                                                 </div>
                                             </div>
@@ -200,7 +241,31 @@ $this->layout('_theme', [
             });
         });
 
+
     });
+
+    function carregar_dados(url) {
+        $.ajax({
+            url: url,
+            type: 'POST',
+            success: function (retorno) {
+                let obj = JSON.parse(retorno);
+                // let obj = retorno;
+                console.log(obj);
+                Object.entries(obj).forEach(([key, value]) => {
+                    console.log(value)
+                    if (!value) return;
+                    let campo = "[name='" + key + "']";
+
+                    // if (value == 1) {
+                    $(campo).val(value);
+                    // }
+                });
+                $('.lista').removeClass('active');
+                $('.cadastro').addClass('active');
+            }
+        });
+    }
 </script>
 <?php $this->end() ?>
 

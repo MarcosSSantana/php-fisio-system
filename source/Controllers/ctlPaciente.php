@@ -48,13 +48,17 @@ class ctlPaciente
             $user = $user->findById($id);
         }
         $user->nome = $data["nome"];
+        $user->sexo = $data["sexo"];
         $user->idade = $data["idade"];
         $user->cpf = $data["cpf"];
+        $user->telefone = $data["telefone"];
         $user->peso = $data["peso"];
         $user->altura = $data["altura"];
+        $user->imc = $data["imc"];
+        $user->convenio = $data["convenio"];
         $user->hd = $data["hd"];
         $user->ac = $data["ac"];
-        $user->observacao = $data["obs"];
+        $user->observacao = $data["observacao"];
 //        echo "<pre>";
 //        print_r($user);
 //        echo "</pre>";

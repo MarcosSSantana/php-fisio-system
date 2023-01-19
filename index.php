@@ -2,7 +2,7 @@
 require __DIR__."/vendor/autoload.php";
 use CoffeeCode\Router\Router;
 
-$router = new Router("http://localhost:8888/fisio-system");
+$router = new Router(ROOT);
 
 $router->namespace("Source\Controllers");
 $router->group(null);
