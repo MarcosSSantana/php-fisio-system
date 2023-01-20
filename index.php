@@ -16,6 +16,14 @@ $router->group("paciente");
 $router->get("/", "ctlPaciente:inicio");
 $router->post("/", "ctlPaciente:cadastro");
 $router->post("/dados/{id}", "ctlPaciente:list");
+$router->post("/detalhes", "ctlPaciente:listTotal");
+
+
+//sessao
+$router->group("sessao");
+$router->get("/", "ctlSessao:inicio");
+$router->post("/", "ctlSessao:cadastro");
+$router->post("/dados/{id}", "ctlSessao:list");
 
 /*
 $router->post("/route/{id}", "Controller:method");

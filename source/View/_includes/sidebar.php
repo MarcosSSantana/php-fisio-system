@@ -48,21 +48,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="sessao" class="nav-link">
                         <i class="nav-icon fas fa-clinic-medical"></i>
                         <p>
                             Sessões
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Planos
-                        </p>
-                    </a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a href="#" class="nav-link">-->
+<!--                        <i class="nav-icon fas fa-th"></i>-->
+<!--                        <p>-->
+<!--                            Planos-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                </li>-->
 <!--                <li class="nav-item menu-open">-->
 <!--                    <a href="#" class="nav-link active">-->
 <!--                        <i class="nav-icon fas fa-tachometer-alt"></i>-->

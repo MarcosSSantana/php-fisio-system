@@ -9,7 +9,7 @@ class Sessao extends DataLayer
 {
     public function __construct()
     {
-        parent::__construct("sessao", ["nome"], "id", true);
+        parent::__construct("sessao", ["idPaciente"], "id", true);
     }
 
 }

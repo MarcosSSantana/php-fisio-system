@@ -37,6 +37,16 @@ class ctlPaciente
         echo json_encode($list->data);
     }
 
+    public function listTotal(){
+        $list = (new Paciente())->find()->fetch(true);
+        $paciente = [];
+        foreach ($list as $item){
+            $paciente[$item->data->id] = $item->data;
+        }
+
+        echo json_encode($paciente);
+    }
+
     public function cadastro($data)
     {
         //var_dump($data);
