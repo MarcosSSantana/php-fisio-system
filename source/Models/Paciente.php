@@ -12,4 +12,8 @@ class Paciente extends DataLayer
         parent::__construct("paciente", ["nome"], "id", true);
     }
 
+    public function  sessoes(){
+        
+    }
+
 }

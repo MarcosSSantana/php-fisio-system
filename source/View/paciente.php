@@ -204,7 +204,13 @@ $this->layout('_theme', [
 <script src="<?= ROOT ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-    $(function () {
+    window.addEventListener("load", function(event) {
+    // $(function () {
+        $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
+            $('form').trigger("reset");
+            $("[name='id']").val("");
+        });
+
         $('table').DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],

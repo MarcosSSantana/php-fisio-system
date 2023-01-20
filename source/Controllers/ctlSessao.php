@@ -18,7 +18,9 @@ class ctlSessao
     public function inicio($data)
     {
         $list = (new Sessao())->find()->fetch(true);
-
+//        echo "<pre>";
+//        print_r($list);
+//        echo "</pre>";
         echo $this->view->render("sessao", [
             "sessoes" => $list,
             "title" => "Sessões"
@@ -34,7 +36,6 @@ class ctlSessao
 
     public function cadastro($data)
     {
-        var_dump($data);
         $id = $data["id"];
         if(empty($id)){
             $sessao = new Sessao();
@@ -42,17 +43,12 @@ class ctlSessao
             $sessao = new Sessao();
             $sessao = $sessao->findById($id);
         }
-        $sessao->nome = $data["nome"];
-        $sessao->sexo = $data["sexo"];
-        $sessao->idade = $data["idade"];
-        $sessao->cpf = $data["cpf"];
-        $sessao->telefone = $data["telefone"];
-        $sessao->peso = $data["peso"];
-        $sessao->altura = $data["altura"];
-        $sessao->imc = $data["imc"];
-        $sessao->convenio = $data["convenio"];
-        $sessao->hd = $data["hd"];
-        $sessao->ac = $data["ac"];
+        $sessao->idPaciente = $data["idPaciente"];
+        $sessao->pa = $data["pa"];
+        $sessao->fc = $data["fc"];
+        $sessao->bpm = $data["bpm"];
+        $sessao->sp = $data["sp"];
+        $sessao->ap = $data["ap"];
         $sessao->observacao = $data["observacao"];
 //        echo "<pre>";
 //        print_r($sessao);

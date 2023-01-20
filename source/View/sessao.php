@@ -30,6 +30,7 @@ $this->layout('_theme', [
                                 <table id="example1" name="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Data</th>
                                         <th>idPaciente</th>
                                         <th>PA</th>
@@ -40,7 +41,8 @@ $this->layout('_theme', [
                                     <tbody>
                                     <?php foreach ($this->data["sessoes"] as $item) { ?>
                                         <tr>
-                                            <td><?= $item->dia ?></td>
+                                            <td><?= $item->id ?></td>
+                                            <td><?= $item->created_at ?></td>
                                             <td><?= $item->idPaciente ?></td>
                                             <td><?= $item->pa ?></td>
                                             <td><?= $item->fc ?></td>
@@ -66,29 +68,50 @@ $this->layout('_theme', [
                                 </table>
                             </div>
                             <div class="tab-pane cadastro" id="cadastro">
-                                <form action="<?= ROOT ?>paciente" method="post">
+                                <form action="<?= ROOT ?>sessao" method="post">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="idPaciente">Paciente</label>
-                                                    <select class="form-control slc_paciente" name="idPaciente" >
+                                                    <select class="form-control slc_paciente" name="idPaciente" required>
                                                         <option value="">Paciente</option>
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="nome">Nome</label>
-                                                    <input type="text" class="form-control" name="nome"
-                                                           placeholder="Nome" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <label for="ac">AC</label>
-                                                    <input type="text" class="form-control" name="ac" placeholder="AC">
+                                                    <label for="pa">PA</label>
+                                                    <input type="text" class="form-control" name="pa" placeholder="PA">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="fc">FC</label>
+                                                    <input type="text" class="form-control" name="fc" placeholder="FC">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="bpm">BPM</label>
+                                                    <input type="text" class="form-control" name="bpm" placeholder="BPM">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="sp">SP</label>
+                                                    <input type="text" class="form-control" name="sp" placeholder="SP">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="ap">AP</label>
+                                                    <input type="text" class="form-control" name="ap" placeholder="AP">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -134,15 +157,22 @@ $this->layout('_theme', [
 <script src="<?= ROOT ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-    $(function () {
+    window.addEventListener("load", function(event) {
+        // $(function () {
+        $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
+            $('form').trigger("reset");
+            $("[name='id']").val("");
+        });
+
         if ($(".slc_paciente").length > 0) {
             $.ajax({
                 url: '<?= ROOT ?>/paciente/detalhes',
                 type: 'POST',
                 success: function(retorno) {
-                    console.log(retorno);
+                    // console.log(retorno);
                     let obj = JSON.parse(retorno);
-                    let opt = Object.entries(obj).map((item) => {
+                    let opt = "<option value=''>Paciente</option>";
+                        opt += Object.entries(obj).map((item) => {
                         return "<option value='" + item[1].id + "'>" + item[1].nome +
                             "</option>"
                     });
