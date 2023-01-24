@@ -83,6 +83,7 @@ $this->layout('_theme', [
                                             <b>FC : </b><span><?= $item->fc ?></span>
                                             <b>PA : </b><span><?= $item->pa ?></span>
                                         </p>
+                                        <p><b>Observação : </b><span><?= $item->observacao ?></span></p>
                                     <?php }
                                 } ?>
 

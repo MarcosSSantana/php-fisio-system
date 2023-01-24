@@ -13,12 +13,12 @@ $this->layout('_theme', [
                     <div class="card-header p-0 pt-1">
                         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active lista" id="tabs-lista-tab" data-toggle="pill"
+                                <a class="nav-link lista" id="tabs-lista-tab" data-toggle="pill"
                                    href="#lista" role="tab" aria-controls="tabs-lista"
                                    aria-selected="true">Lista</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link cadastro" id="tabs-cadastro-tab" data-toggle="pill"
+                                <a class="active nav-link cadastro" id="tabs-cadastro-tab" data-toggle="pill"
                                    href="#cadastro" role="tab" aria-controls="tabs-cadastro"
                                    aria-selected="false">Cadastro</a>
                             </li>
@@ -26,7 +26,7 @@ $this->layout('_theme', [
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="custom-tabs-one-tabContent">
-                            <div class="active tab-pane lista" id="lista">
+                            <div class="tab-pane lista" id="lista">
                                 <table id="example1" name="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
@@ -67,7 +67,7 @@ $this->layout('_theme', [
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="tab-pane cadastro" id="cadastro">
+                            <div class="active tab-pane cadastro" id="cadastro">
                                 <form action="<?= ROOT ?>sessao" method="post">
                                     <div class="card-body">
                                         <div class="row">
