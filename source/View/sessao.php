@@ -71,7 +71,7 @@ $this->layout('_theme', [
                                 <form action="<?= ROOT ?>sessao" method="post">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="idPaciente">Paciente</label>
                                                     <select class="form-control slc_paciente" name="idPaciente" required>
@@ -80,40 +80,38 @@ $this->layout('_theme', [
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="ap">AP</label>
+                                                    <input type="text" class="form-control" name="ap" placeholder="AP">
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="pa">PA</label>
-                                                    <input type="text" class="form-control" name="pa" placeholder="PA">
+                                                    <input type="tel" class="form-control" name="pa" placeholder="PA"
+                                                           data-inputmask='"mask": "99[9]x99[9]mmHg"' data-mask>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="fc">FC</label>
-                                                    <input type="text" class="form-control" name="fc" placeholder="FC">
+                                                    <input type="tel" class="form-control" name="fc" placeholder="FC"
+                                                           data-inputmask='"mask": "99[9]bpm"' data-mask>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <label for="bpm">BPM</label>
-                                                    <input type="text" class="form-control" name="bpm" placeholder="BPM">
+                                                    <label for="sp">SpO2</label>
+                                                    <input type="tel" class="form-control" name="sp" placeholder="SP"
+                                                           data-inputmask='"mask": "99[9]%"' data-mask>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="sp">SP</label>
-                                                    <input type="text" class="form-control" name="sp" placeholder="SP">
-                                                </div>
-                                            </div>
 
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="ap">AP</label>
-                                                    <input type="text" class="form-control" name="ap" placeholder="AP">
-                                                </div>
-                                            </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="observacao">Observação</label>

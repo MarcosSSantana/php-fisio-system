@@ -46,7 +46,6 @@ class ctlSessao
         $sessao->idPaciente = $data["idPaciente"];
         $sessao->pa = $data["pa"];
         $sessao->fc = $data["fc"];
-        $sessao->bpm = $data["bpm"];
         $sessao->sp = $data["sp"];
         $sessao->ap = $data["ap"];
         $sessao->observacao = $data["observacao"];
