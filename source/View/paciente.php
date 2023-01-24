@@ -53,6 +53,7 @@ $this->layout('_theme', [
                                                         <i class="fas fa-pencil-alt"></i>
                                                         Editar
                                                     </button>
+
                                                     <!--<a class="btn btn-warning btn-sm carregar_dados"
                                                        onclick="carregar_dados(this)"
                                                        href="paciente/dados/<?= $item->id ?>">
@@ -65,6 +66,11 @@ $this->layout('_theme', [
                                                         <i class="fas fa-trash">
                                                         </i>
                                                         Delete
+                                                    </a>
+                                                    <a class="btn btn-info btn-sm"
+                                                       href="paciente/sessoes/<?= $item->id ?>">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        Ficha
                                                     </a>
                                                 </div>
                                             </td>
@@ -97,7 +103,7 @@ $this->layout('_theme', [
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="convenio">Convênio</label>
-                                                    <select class="form-control" name="convenio" >
+                                                    <select class="form-control" name="convenio">
                                                         <option value="">Convênio</option>
                                                         <option value="Unimed">Unimed</option>
                                                         <option value="São Francisco">São Francisco</option>
@@ -204,9 +210,9 @@ $this->layout('_theme', [
 <script src="<?= ROOT ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-    window.addEventListener("load", function(event) {
-    // $(function () {
-        $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
+    window.addEventListener("load", function (event) {
+        // $(function () {
+        $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
             $('form').trigger("reset");
             $("[name='id']").val("");
         });
@@ -238,7 +244,7 @@ $this->layout('_theme', [
                         let campo = "[name='" + key + "']";
 
                         // if (value == 1) {
-                            $(campo).val(value);
+                        $(campo).val(value);
                         // }
                     });
                     $('.lista').removeClass('active');

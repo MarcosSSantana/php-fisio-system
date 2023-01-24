@@ -5,6 +5,7 @@ namespace Source\Controllers;
 use League\Plates\Engine;
 use Source\Models\Convenio;
 use Source\Models\Paciente;
+use Source\Models\Sessao;
 
 class ctlPaciente
 {
@@ -78,4 +79,22 @@ class ctlPaciente
         header("Location: ".ROOT."paciente");
     }
 
+    public function sessoes($dados){
+        $id = $dados["id"];
+        $paciente = (new Paciente())->findById($id);
+        $sessoes = (new Sessao())->find("idPaciente = :id","id={$id}")->fetch(true);
+
+        $dados['paciente'] = $paciente->data();
+        foreach ($sessoes as $item){
+            $dados['sessoes'][] = $item->data();
+        }
+
+        echo $this->view->render("avaliacao", [
+            "dados" => $dados,
+            "title" => "Avaliação"
+        ]);
+        /*echo "<pre>";
+        print_r($dados);
+        echo "</pre>";*/
+    }
 }

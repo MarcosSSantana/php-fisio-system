@@ -17,6 +17,7 @@ $router->get("/", "ctlPaciente:inicio");
 $router->post("/", "ctlPaciente:cadastro");
 $router->post("/dados/{id}", "ctlPaciente:list");
 $router->post("/detalhes", "ctlPaciente:listTotal");
+$router->get("/sessoes/{id}", "ctlPaciente:sessoes");
 
 
 //sessao
