@@ -26,6 +26,14 @@ $router->get("/", "ctlSessao:inicio");
 $router->post("/", "ctlSessao:cadastro");
 $router->post("/dados/{id}", "ctlSessao:list");
 
+function dump($str,$hide=false){
+    if ($hide) echo "<!-- ";
+    echo '<pre>';
+    print_r ($str);
+    echo '</pre>';
+    if ($hide) echo " -->";
+}
+
 /*
 $router->post("/route/{id}", "Controller:method");
 $router->put("/route/{id}/profile", "Controller:method");

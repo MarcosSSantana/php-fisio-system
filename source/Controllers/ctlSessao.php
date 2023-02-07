@@ -4,6 +4,7 @@ namespace Source\Controllers;
 
 use League\Plates\Engine;
 use Source\Models\Convenio;
+use Source\Models\Paciente;
 use Source\Models\Sessao;
 
 class ctlSessao
@@ -17,10 +18,33 @@ class ctlSessao
 
     public function inicio($data)
     {
-        $list = (new Sessao())->find()->fetch(true);
+
+        $pacienteList = (new Paciente())->find()->fetch(true);
+        $sessoes = (new Sessao())->find()->fetch(true);
+
+        $paciente = [];
+        foreach ($pacienteList as $item){
+            $paciente[$item->data->id] = $item->data;
+        }
 //        echo "<pre>";
-//        print_r($list);
+//        print_r($paciente);
 //        echo "</pre>";
+        foreach ($sessoes as $key => $item){
+            $list[$key]['id'] = $item->data->id;
+            $list[$key]['created_at'] = $item->data->created_at;
+            $list[$key]['idPaciente'] = $item->data->idPaciente;
+            $list[$key]['paciente'] = $paciente[$item->data->idPaciente]->nome;
+            $list[$key]['pa'] = $item->data->pa;
+            $list[$key]['fc'] = $item->data->fc;
+//            echo "<pre>";
+//            print_r($paciente[$item->data->idPaciente]);
+//            echo "</pre>";
+        }
+
+
+
+//        $list = (new Sessao())->find()->fetch(true);
+
         echo $this->view->render("sessao", [
             "sessoes" => $list,
             "title" => "Sessões"

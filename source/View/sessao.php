@@ -3,6 +3,11 @@ $this->layout('_theme', [
     'title' => $this->data["title"]
 ])
 ?>
+<?php
+echo "<pre>";
+//print_r($this->data["sessoes"]);
+echo "</pre>";
+?>
 
 <!-- Main content -->
 <section class="content">
@@ -32,6 +37,7 @@ $this->layout('_theme', [
                                     <tr>
                                         <th>ID</th>
                                         <th>Data</th>
+                                        <th>Paciente</th>
                                         <th>idPaciente</th>
                                         <th>PA</th>
                                         <th>FC</th>
@@ -41,21 +47,22 @@ $this->layout('_theme', [
                                     <tbody>
                                     <?php foreach ($this->data["sessoes"] as $item) { ?>
                                         <tr>
-                                            <td><?= $item->id ?></td>
-                                            <td><?= $item->created_at ?></td>
-                                            <td><?= $item->idPaciente ?></td>
-                                            <td><?= $item->pa ?></td>
-                                            <td><?= $item->fc ?></td>
+                                            <td><?= $item['id'] ?></td>
+                                            <td><?=  date_format(date_create($item['created_at']),"d/m/Y") ?></td>
+                                            <td><?= $item['paciente'] ?></td>
+                                            <td><?= $item['idPaciente'] ?></td>
+                                            <td><?= $item['pa'] ?></td>
+                                            <td><?= $item['fc'] ?></td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button class="btn btn-warning btn-sm"
-                                                            onclick="carregar_dados('sessao/dados/<?= $item->id ?>')">
+                                                            onclick="carregar_dados('sessao/dados/<?= $item['id'] ?>')">
                                                         <i class="fas fa-pencil-alt"></i>
                                                         Editar
                                                     </button>
 
                                                     <a class="btn btn-danger btn-sm deletar_dados"
-                                                       href="sessao/deletar/<?= $item->id ?>">
+                                                       href="sessao/deletar/<?= $item['id'] ?>">
                                                         <i class="fas fa-trash">
                                                         </i>
                                                         Delete
