@@ -70,12 +70,19 @@ $this->layout('_theme', [
                                     <b>Cadastro :</b>
                                     <span><?= $dados['paciente']->created_at ?></span>
                                 </p>
-                                <?php
+                                <?php $graficofc = [];
                                 if (!empty($dados['sessoes'])) {
-                                    foreach ($dados['sessoes'] as $item) { ?>
+                                    foreach ($dados['sessoes'] as $key=>$item) {
+                                        $graficofc[$key]['key']=$key+1;
+                                        $graficofc[$key]['fcN']=$item->fc;
+                                        $graficofc[$key]['fc']=intval($item->fc);
+                                        $graficofc[$key]['pa']=intval($item->pa);
+                                        $graficofc[$key]['sp']=intval($item->sp);
+                                        $graficofc[$key]['data']=date_format(date_create($item->created_at),"d/m/Y H:i");
+                                        ?>
                                         <hr>
                                         <p>
-                                            <b>Data :</b><span> <?= $item->created_at ?></span>
+                                            <b>Data :</b><span> <?= date_format(date_create($item->created_at),"d/m/Y") ?></span>
                                             <b>AP : </b><span><?= $item->ap ?></span>
                                         </p>
                                         <p>
@@ -87,6 +94,17 @@ $this->layout('_theme', [
                                     <?php }
                                 } ?>
 
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <canvas id="chartFC"></canvas>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <canvas id="chartSP"></canvas>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane cadastro" id="cadastro">
                             </div>
@@ -113,75 +131,71 @@ $this->layout('_theme', [
 <script src="<?= ROOT ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?= ROOT ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+<script src="<?= ROOT ?>assets/plugins/chart.js/Chart.min.js"></script>
+
 <script>
     window.addEventListener("load", function (event) {
-        // $(function () {
-        $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
-            $('form').trigger("reset");
-            $("[name='id']").val("");
-        });
+        let dados = <?=json_encode($graficofc)?>;
+        console.log(dados);
+        let fc = dados.map((item) => item.fc);
+        let sp = dados.map((item) => item.sp);
+        let pa = dados.map((item) => item.pa);
+        let datas = dados.map((item) => item.data);
+        let key = dados.map((item) => item.key);
 
-        $('table').DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-            "paging": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        const ctx = document.getElementById('chartFC');
 
-        $(":input").inputmask();
-
-        $('.carregar_dados').click(function (event) {
-            event.preventDefault();
-            let url = $(this).attr('href');
-            $.ajax({
-                url: url,
-                type: 'POST',
-                success: function (retorno) {
-                    let obj = JSON.parse(retorno);
-                    // let obj = retorno;
-                    console.log(obj);
-                    Object.entries(obj).forEach(([key, value]) => {
-                        console.log(value)
-                        if (!value) return;
-                        let campo = "[name='" + key + "']";
-
-                        // if (value == 1) {
-                        $(campo).val(value);
-                        // }
-                    });
-                    $('.lista').removeClass('active');
-                    $('.cadastro').addClass('active');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: key,
+                datasets: [{
+                    label: 'FC em bpm',
+                    data: fc,
+                    borderWidth: 5,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
-            });
+            }
         });
+
+        const ctsp = document.getElementById('chartSP');
+
+        new Chart(ctsp, {
+            type: 'line',
+            data: {
+                labels: key,
+                datasets: [{
+                    label: 'SpO2 ',
+                    data: sp,
+                    borderWidth: 5,
+                    fill: false,
+                    borderColor: 'rgb(27,78,234)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
 
 
     });
 
-    function carregar_dados(url) {
-        $.ajax({
-            url: url,
-            type: 'POST',
-            success: function (retorno) {
-                let obj = JSON.parse(retorno);
-                // let obj = retorno;
-                console.log(obj);
-                Object.entries(obj).forEach(([key, value]) => {
-                    console.log(value)
-                    if (!value) return;
-                    let campo = "[name='" + key + "']";
-
-                    // if (value == 1) {
-                    $(campo).val(value);
-                    // }
-                });
-                $('.lista').removeClass('active');
-                $('.cadastro').addClass('active');
-            }
-        });
-    }
 </script>
 <?php $this->end() ?>
 
