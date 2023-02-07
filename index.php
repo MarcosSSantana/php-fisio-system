@@ -1,15 +1,19 @@
 <?php
 require __DIR__."/vendor/autoload.php";
 use CoffeeCode\Router\Router;
+session_start();
 
 $router = new Router(ROOT);
 
 $router->namespace("Source\Controllers");
 $router->group(null);
-$router->get("/", "Main:inicio");
+
 //$router->get("/paciente", "ctlPaciente:inicio");
 //$router->post("/paciente", "ctlPaciente:cadastro");
-$router->get("/login", "Main:login");
+$router->get("/login", "Main:logar");
+$router->post("/login", "Main:login");
+
+$router->get("/", "Main:inicio");
 
 //paciente
 $router->group("paciente");

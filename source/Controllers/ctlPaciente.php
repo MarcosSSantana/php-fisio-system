@@ -13,6 +13,9 @@ class ctlPaciente
 
     public function __construct()
     {
+        if(empty($_SESSION['email'])){
+            header("Location: ".ROOT."login");
+        }
         $this->view = new Engine(__DIR__ . "/../View", "php");
     }
 
