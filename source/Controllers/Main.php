@@ -5,6 +5,7 @@ namespace Source\Controllers;
 use League\Plates\Engine;
 use Source\Models\Convenio;
 use Source\Models\Paciente;
+use Source\Models\Sessao;
 
 class Main
 {
@@ -18,10 +19,13 @@ class Main
     public function inicio($data)
     {
 //        echo "<h1>Inicio</h1>";
-
+        $pacientes = (new Paciente())->find()->count();
+        $sessoes = (new Sessao())->find()->count();
         $list = "";//(new Paciente())->find()->fetch(true);
         echo $this->view->render("inicio", [
-            "title" => "Inicio"
+            "title" => "Inicio",
+            "qtdPacientes" => $pacientes,
+            "qtdSessoes" => $sessoes
         ]);
 //        foreach ($list as $item) {
 //            print_r($item->nome);
