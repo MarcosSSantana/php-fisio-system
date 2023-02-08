@@ -85,7 +85,7 @@ class ctlPaciente
     public function sessoes($dados){
         $id = $dados["id"];
         $paciente = (new Paciente())->findById($id);
-        $sessoes = (new Sessao())->find("idPaciente = :id","id={$id}")->fetch(true);
+        $sessoes = (new Sessao())->find("idPaciente = :id","id={$id}")->order("created_at ASC")->fetch(true);
 
         $dados['paciente'] = $paciente->data();
         foreach ($sessoes as $item){
