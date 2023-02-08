@@ -20,7 +20,7 @@ $this->layout('_theme', [
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="<?= url('paciente') ?>" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="<?= url('sessao') ?>" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@ $this->layout('_theme', [
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="<?= url('sessao') ?>" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="<?= url('paciente') ?>" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
