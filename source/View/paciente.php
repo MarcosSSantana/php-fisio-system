@@ -31,7 +31,8 @@ $this->layout('_theme', [
                                     <thead>
                                     <tr>
                                         <th>Nome</th>
-                                        <th>CPF</th>
+                                        <th>Telefone</th>
+                                        <th>Convênio</th>
                                         <th>Idade</th>
                                         <th>Peso</th>
                                         <th>Altura</th>
@@ -42,7 +43,8 @@ $this->layout('_theme', [
                                     <?php foreach ($this->data["pacientes"] as $item) { ?>
                                         <tr>
                                             <td><?= $item->nome ?></td>
-                                            <td><?= $item->cpf ?></td>
+                                            <td><?= $item->telefone ?></td>
+                                            <td><?= $item->convenio ?></td>
                                             <td><?= $item->idade ?></td>
                                             <td><?= $item->peso ?></td>
                                             <td><?= $item->altura ?></td>
@@ -107,6 +109,7 @@ $this->layout('_theme', [
                                                         <option value="">Convênio</option>
                                                         <option value="Unimed">Unimed</option>
                                                         <option value="São Francisco">São Francisco</option>
+                                                        <option value="Particular">Particular</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -122,7 +125,7 @@ $this->layout('_theme', [
                                                     <label for="cpf">CPF</label>
                                                     <input type="text" class="form-control" name="cpf"
                                                            data-inputmask='"mask": "999.999.999-99"' data-mask
-                                                           placeholder="CPF" required>
+                                                           placeholder="CPF">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -143,9 +146,9 @@ $this->layout('_theme', [
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="altura">Altura</label>
-                                                    <input type="tel" class="form-control" name="altura"
+                                                    <input type="text" class="form-control" name="altura"
                                                            data-inputmask='"mask": "9.99"' data-mask
-                                                           placeholder="Altura">
+                                                           placeholder="Altura" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
