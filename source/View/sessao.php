@@ -67,6 +67,11 @@ echo "</pre>";
                                                         </i>
                                                         Delete
                                                     </a>
+                                                    <a class="btn btn-info btn-sm"
+                                                       href="paciente/sessoes/<?= $item['idPaciente'] ?>">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        Ficha
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
