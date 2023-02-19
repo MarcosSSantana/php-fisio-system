@@ -19,11 +19,15 @@ class Main
     public function inicio($data)
     {
 //        echo "<h1>Inicio</h1>";
+        $pacientesMasc = (new Paciente())->find("sexo = :sexo","sexo=Masculino")->count();
+        $pacientesFemi = (new Paciente())->find("sexo = :sexo","sexo=Feminino")->count();
         $pacientes = (new Paciente())->find()->count();
         $sessoes = (new Sessao())->find()->count();
         $list = "";//(new Paciente())->find()->fetch(true);
         echo $this->view->render("inicio", [
             "title" => "Inicio",
+            "qtdPacientesMasc" => $pacientesMasc,
+            "qtdPacientesFemi" => $pacientesFemi,
             "qtdPacientes" => $pacientes,
             "qtdSessoes" => $sessoes
         ]);
