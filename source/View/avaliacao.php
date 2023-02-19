@@ -68,31 +68,52 @@ $this->layout('_theme', [
                                 </p>
                                 <p>
                                     <b>Cadastro :</b>
-                                    <span><?= $dados['paciente']->created_at ?></span>
+                                    <span><?= date_format(date_create($dados['paciente']->created_at), "d/m/Y H:i") ?></span>
                                 </p>
                                 <?php $graficofc = [];
-                                if (!empty($dados['sessoes'])) {
-                                    foreach ($dados['sessoes'] as $key=>$item) {
-                                        $graficofc[$key]['key']=$key+1;
-                                        $graficofc[$key]['fcN']=$item->fc;
-                                        $graficofc[$key]['fc']=intval($item->fc);
-                                        $graficofc[$key]['pa']=intval($item->pa);
-                                        $graficofc[$key]['sp']=intval($item->sp);
-                                        $graficofc[$key]['data']=date_format(date_create($item->created_at),"d/m/Y H:i");
-                                        ?>
-                                        <hr>
-                                        <p>
-                                            <b>Data :</b><span> <?= date_format(date_create($item->created_at),"d/m/Y") ?></span>
-                                            <b>AP : </b><span><?= $item->ap ?></span>
-                                        </p>
-                                        <p>
-                                            <b>SpO2 : </b><span><?= $item->sp ?></span>
-                                            <b>FC : </b><span><?= $item->fc ?></span>
-                                            <b>PA : </b><span><?= $item->pa ?></span>
-                                        </p>
-                                        <p><b>Observação : </b><span><?= $item->observacao ?></span></p>
-                                    <?php }
-                                } ?>
+                                if (!empty($dados['sessoes'])) { ?>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped ">
+                                            <thead>
+                                            <tr>
+                                                <th>Data</th>
+                                                <th>AP</th>
+                                                <th>SpO2</th>
+                                                <th>FC</th>
+                                                <th>PA</th>
+                                                <th>Observação</th>
+                                            </tr>
+                                            </thead>
+                                            <?php foreach ($dados['sessoes'] as $key => $item) {
+                                                $graficofc[$key]['key'] = $key + 1;
+                                                $graficofc[$key]['fcN'] = $item->fc;
+                                                $graficofc[$key]['fc'] = intval($item->fc);
+                                                $graficofc[$key]['pa'] = intval($item->pa);
+                                                $graficofc[$key]['sp'] = intval($item->sp);
+                                                $graficofc[$key]['data'] = date_format(date_create($item->created_at), "d/m/Y H:i");
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <span> <?= date_format(date_create($item->created_at), "d/m/Y") ?></span>
+                                                    </td>
+                                                    <td>
+                                                        <span><?= $item->ap ?></span>
+                                                    </td>
+                                                    <td>
+                                                        <span><?= $item->sp ?></span>
+                                                    </td>
+                                                    <td>
+                                                        <span><?= $item->fc ?></span>
+                                                    </td>
+                                                    <td>
+                                                        <span><?= $item->pa ?></span>
+                                                    </td>
+                                                    <td><span><?= $item->observacao ?></span></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </table>
+                                    </div>
+                                <?php } ?>
 
                                 <div class="container">
                                     <div class="row">
@@ -190,8 +211,6 @@ $this->layout('_theme', [
                 }
             }
         });
-
-
 
 
     });
