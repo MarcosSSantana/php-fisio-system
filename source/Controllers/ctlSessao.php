@@ -75,6 +75,7 @@ class ctlSessao
         $sessao->fc = $data["fc"];
         $sessao->sp = $data["sp"];
         $sessao->ap = $data["ap"];
+        $sessao->numSessao = $data["numSessao"];
         $sessao->observacao = $data["observacao"];
 //        echo "<pre>";
 //        print_r($sessao);

@@ -122,7 +122,12 @@ echo "</pre>";
                                                            data-inputmask='"mask": "99[9]%"' data-mask>
                                                 </div>
                                             </div>
-
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="numSessao">Número sessão</label>
+                                                    <input type="number" class="form-control" name="numSessao" min="1">
+                                                </div>
+                                            </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
