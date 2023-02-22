@@ -2,9 +2,10 @@
 $this->layout('_theme', [
     'title' => $this->data["title"]
 ]);
-
 ?>
-
+<pre>
+<!--    --><?php //print_r($this->data["dataSessoes"])?>
+</pre>
 <section class="content">
     <div class="container-fluid">
 
