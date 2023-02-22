@@ -39,6 +39,7 @@ class ctlSessao
             $list[$key]['paciente'] = $paciente[$item->data->idPaciente]->nome;
             $list[$key]['pa'] = $item->data->pa;
             $list[$key]['fc'] = $item->data->fc;
+            $list[$key]['numSessao'] = $item->data->numSessao;
 //            echo "<pre>";
 //            print_r($paciente[$item->data->idPaciente]);
 //            echo "</pre>";

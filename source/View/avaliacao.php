@@ -26,10 +26,17 @@ $this->layout('_theme', [
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="custom-tabs-one-tabContent">
-                            <div class="active tab-pane lista" id="lista">
+                            <div class="active tab-pane lista clearfix" id="lista">
                                 <?php
                                 $dados = $this->data["dados"];
                                 ?>
+<!--                                <div class="clearfix">-->
+                                    <a class="btn btn-info btn-sm float-right"
+                                       href="<?= url('sessao') ?>">
+                                        Sessões
+                                    </a>
+<!--                                </div>-->
+
                                 <p>
                                     <b>NOME :</b>
                                     <span><?= $dados['paciente']->nome ?></span>
@@ -77,6 +84,7 @@ $this->layout('_theme', [
                                             <thead>
                                             <tr>
                                                 <th>Data</th>
+                                                <th>Número sessão</th>
                                                 <th>AP</th>
                                                 <th>SpO2</th>
                                                 <th>FC</th>
@@ -95,6 +103,9 @@ $this->layout('_theme', [
                                                 <tr>
                                                     <td>
                                                         <span> <?= date_format(date_create($item->created_at), "d/m/Y") ?></span>
+                                                    </td>
+                                                    <td>
+                                                        <span><?= $item->numSessao ?></span>
                                                     </td>
                                                     <td>
                                                         <span><?= $item->ap ?></span>

@@ -37,6 +37,7 @@ echo "</pre>";
                                     <tr>
                                         <th>ID</th>
                                         <th>Data</th>
+                                        <th>Número sessão</th>
                                         <th>Paciente</th>
                                         <th>idPaciente</th>
                                         <th>PA</th>
@@ -49,6 +50,7 @@ echo "</pre>";
                                         <tr>
                                             <td><?= $item['id'] ?></td>
                                             <td><?=  date_format(date_create($item['created_at']),"d/m/Y") ?></td>
+                                            <td><?= $item['numSessao'] ?></td>
                                             <td><?= $item['paciente'] ?></td>
                                             <td><?= $item['idPaciente'] ?></td>
                                             <td><?= $item['pa'] ?></td>
