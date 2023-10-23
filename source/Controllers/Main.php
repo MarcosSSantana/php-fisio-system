@@ -62,7 +62,7 @@ class Main
 
     public function login($data)
     {
-        if ($data['email'] === "marinajgomes@hotmail.com" && $data['password'] === "abc123@@#") {
+        if (($data['email'] === "marinajgomes@hotmail.com" || $data['email'] === "isa.pnovaes@gmail.com") && $data['password'] === "abc123@@#") {
             $_SESSION['email'] = $data['email'];
             $_SESSION['password'] = $data['password'];
             $_SESSION['nome'] = "Marina";

@@ -3,7 +3,7 @@
         'name' => 'vendor-name/fisio-system',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '0730a53ab559d1ff2892b0edd190969bf3492d4a',
+        'reference' => 'f36595703b686320e352b050989d336649611f93',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -40,7 +40,7 @@
         'vendor-name/fisio-system' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '0730a53ab559d1ff2892b0edd190969bf3492d4a',
+            'reference' => 'f36595703b686320e352b050989d336649611f93',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
