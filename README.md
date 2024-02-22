@@ -4,13 +4,13 @@ O Sistema de Controle de Consultas de Fisioterapia é uma aplicação web desenv
 
 ## Funcionalidades
 
-- Cadastro de Pacientes:
+- ##### Cadastro de Pacientes:
   Os fisioterapeutas podem cadastrar novos pacientes, incluindo informações como nome, idade, sexo, histórico médico e contato.
 
-- Registro de Sessões:
+- ##### Registro de Sessões:
   Durante as sessões de fisioterapia, os fisioterapeutas podem fazer registros detalhados sobre o progresso do paciente, exercícios realizados, sensações do paciente, entre outros.
 
-- Ficha de Avaliação:
+- ##### Ficha de Avaliação:
   Com base nos registros das sessões, o sistema gera automaticamente uma ficha de avaliação que inclui informações do paciente, dados das sessões anteriores e um gráfico mostrando o progresso ao longo do tempo.
 
 ## Tecnologias Utilizadas
