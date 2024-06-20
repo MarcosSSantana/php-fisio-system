@@ -13,8 +13,8 @@ class ctlSessao
 
     public function __construct()
     {
-        if(empty($_SESSION['email'])){
-            header("Location: ".ROOT."login");
+        if (empty($_SESSION['email'])) {
+            header("Location: " . ROOT . "login");
         }
         $this->view = new Engine(__DIR__ . "/../View", "php");
     }
@@ -26,13 +26,13 @@ class ctlSessao
         $sessoes = (new Sessao())->find()->fetch(true);
 
         $paciente = [];
-        foreach ($pacienteList as $item){
+        foreach ($pacienteList as $item) {
             $paciente[$item->data->id] = $item->data;
         }
-//        echo "<pre>";
-//        print_r($paciente);
-//        echo "</pre>";
-        foreach ($sessoes as $key => $item){
+        //        echo "<pre>";
+        //        print_r($paciente);
+        //        echo "</pre>";
+        foreach ($sessoes as $key => $item) {
             $list[$key]['id'] = $item->data->id;
             $list[$key]['created_at'] = $item->data->created_at;
             $list[$key]['idPaciente'] = $item->data->idPaciente;
@@ -40,23 +40,24 @@ class ctlSessao
             $list[$key]['pa'] = $item->data->pa;
             $list[$key]['fc'] = $item->data->fc;
             $list[$key]['numSessao'] = $item->data->numSessao;
-//            echo "<pre>";
-//            print_r($paciente[$item->data->idPaciente]);
-//            echo "</pre>";
+            $list[$key]['dataSessao'] = $item->data->dataSessao;
+            //            echo "<pre>";
+            //            print_r($paciente[$item->data->idPaciente]);
+            //            echo "</pre>";
         }
 
 
 
-//        $list = (new Sessao())->find()->fetch(true);
+        //        $list = (new Sessao())->find()->fetch(true);
 
         echo $this->view->render("sessao", [
             "sessoes" => $list,
             "title" => "Sessões"
         ]);
-
     }
 
-    public function list($dados){
+    public function list($dados)
+    {
         $id = $dados["id"];
         $list = (new Sessao())->findById($id);
         echo json_encode($list->data);
@@ -65,9 +66,9 @@ class ctlSessao
     public function cadastro($data)
     {
         $id = $data["id"];
-        if(empty($id)){
+        if (empty($id)) {
             $sessao = new Sessao();
-        }else{
+        } else {
             $sessao = new Sessao();
             $sessao = $sessao->findById($id);
         }
@@ -78,13 +79,9 @@ class ctlSessao
         $sessao->ap = $data["ap"];
         $sessao->numSessao = $data["numSessao"];
         $sessao->observacao = $data["observacao"];
-//        echo "<pre>";
-//        print_r($sessao);
-//        echo "</pre>";
-
+        $sessao->dataSessao = $data["dataSessao"];
         $sessaoId = $sessao->save();
-//        echo $sessaoId;
-        header("Location: ".ROOT."sessao");
+        //        echo $sessaoId;
+        header("Location: " . ROOT . "sessao");
     }
-
 }
