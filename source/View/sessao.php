@@ -123,7 +123,7 @@ echo "</pre>";
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="dataSessao">Data sessão</label>
-                                                    <input type="datetime-local" class="form-control" name="dataSessao">
+                                                    <input type="datetime-local" class="form-control" name="dataSessao" required>
                                                 </div>
                                             </div>
 
