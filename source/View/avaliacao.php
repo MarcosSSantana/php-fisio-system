@@ -30,12 +30,11 @@ $this->layout('_theme', [
                                 <?php
                                 $dados = $this->data["dados"];
                                 ?>
-<!--                                <div class="clearfix">-->
-                                    <a class="btn btn-info btn-sm float-right"
-                                       href="<?= url('sessao') ?>">
-                                        Sessões
-                                    </a>
-<!--                                </div>-->
+                                <!--                                <div class="clearfix">-->
+                                <a class="btn btn-info btn-sm float-right" href="<?= url('sessao') ?>">
+                                    Sessões
+                                </a>
+                                <!--                                </div>-->
 
                                 <p>
                                     <b>NOME :</b>
@@ -82,15 +81,15 @@ $this->layout('_theme', [
                                     <div class="table-responsive">
                                         <table class="table table-striped ">
                                             <thead>
-                                            <tr>
-                                                <th>Data</th>
-                                                <th>Número sessão</th>
-                                                <th>AP</th>
-                                                <th>SpO2</th>
-                                                <th>FC</th>
-                                                <th>PA</th>
-                                                <th>Observação</th>
-                                            </tr>
+                                                <tr>
+                                                    <th>Data</th>
+                                                    <th>Número sessão</th>
+                                                    <th>AP</th>
+                                                    <th>SpO2</th>
+                                                    <th>FC</th>
+                                                    <th>PA</th>
+                                                    <th>Observação</th>
+                                                </tr>
                                             </thead>
                                             <?php foreach ($dados['sessoes'] as $key => $item) {
                                                 $graficofc[$key]['key'] = $key + 1;
@@ -98,11 +97,11 @@ $this->layout('_theme', [
                                                 $graficofc[$key]['fc'] = intval($item->fc);
                                                 $graficofc[$key]['pa'] = intval($item->pa);
                                                 $graficofc[$key]['sp'] = intval($item->sp);
-                                                $graficofc[$key]['data'] = date_format(date_create($item->created_at), "d/m/Y H:i");
-                                                ?>
+                                                $graficofc[$key]['data'] = date_format(date_create($item->dataSessao), "d/m/Y H:i");
+                                            ?>
                                                 <tr>
                                                     <td>
-                                                        <span> <?= date_format(date_create($item->created_at), "d/m/Y") ?></span>
+                                                        <span> <?= date_format(date_create($item->dataSessao), "d/m/Y") ?></span>
                                                     </td>
                                                     <td>
                                                         <span><?= $item->numSessao ?></span>
@@ -166,8 +165,8 @@ $this->layout('_theme', [
 <script src="<?= ROOT ?>assets/plugins/chart.js/Chart.min.js"></script>
 
 <script>
-    window.addEventListener("load", function (event) {
-        let dados = <?=json_encode($graficofc)?>;
+    window.addEventListener("load", function(event) {
+        let dados = <?= json_encode($graficofc) ?>;
         console.log(dados);
         let fc = dados.map((item) => item.fc);
         let sp = dados.map((item) => item.sp);
@@ -225,9 +224,5 @@ $this->layout('_theme', [
 
 
     });
-
 </script>
 <?php $this->end() ?>
-
-
-

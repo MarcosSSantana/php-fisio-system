@@ -13,8 +13,8 @@ class ctlPaciente
 
     public function __construct()
     {
-        if(empty($_SESSION['email'])){
-            header("Location: ".ROOT."login");
+        if (empty($_SESSION['email'])) {
+            header("Location: " . ROOT . "login");
         }
         $this->view = new Engine(__DIR__ . "/../View", "php");
     }
@@ -27,24 +27,25 @@ class ctlPaciente
             "pacientes" => $list,
             "title" => "Paciente"
         ]);
-
     }
 
-    public function list($dados){
+    public function list($dados)
+    {
         $id = $dados["id"];
-//        $list = (new Paciente())->find("id = :id", "id=".$id)->fetch(true);
+        //        $list = (new Paciente())->find("id = :id", "id=".$id)->fetch(true);
         $list = (new Paciente())->findById($id);
-//        foreach ($list as $item) {
-//            echo ($item);
-//        }
-//        print_r($list->data) ;
+        //        foreach ($list as $item) {
+        //            echo ($item);
+        //        }
+        //        print_r($list->data) ;
         echo json_encode($list->data);
     }
 
-    public function listTotal(){
+    public function listTotal()
+    {
         $list = (new Paciente())->find()->fetch(true);
         $paciente = [];
-        foreach ($list as $item){
+        foreach ($list as $item) {
             $paciente[$item->data->id] = $item->data;
         }
 
@@ -55,9 +56,9 @@ class ctlPaciente
     {
         //var_dump($data);
         $id = $data["id"];
-        if(empty($id)){
+        if (empty($id)) {
             $user = new Paciente();
-        }else{
+        } else {
             $user = new Paciente();
             $user = $user->findById($id);
         }
@@ -73,22 +74,23 @@ class ctlPaciente
         $user->hd = $data["hd"];
         $user->ac = $data["ac"];
         $user->observacao = $data["observacao"];
-//        echo "<pre>";
-//        print_r($user);
-//        echo "</pre>";
+        //        echo "<pre>";
+        //        print_r($user);
+        //        echo "</pre>";
 
         $userId = $user->save();
-//        echo $userId;
-        header("Location: ".ROOT."paciente");
+        //        echo $userId;
+        header("Location: " . ROOT . "paciente");
     }
 
-    public function sessoes($dados){
+    public function sessoes($dados)
+    {
         $id = $dados["id"];
         $paciente = (new Paciente())->findById($id);
-        $sessoes = (new Sessao())->find("idPaciente = :id","id={$id}")->order("created_at ASC")->fetch(true);
+        $sessoes = (new Sessao())->find("idPaciente = :id", "id={$id}")->order("created_at ASC")->fetch(true);
 
         $dados['paciente'] = $paciente->data();
-        foreach ($sessoes as $item){
+        foreach ($sessoes as $item) {
             $dados['sessoes'][] = $item->data();
         }
 
